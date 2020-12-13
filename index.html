@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-cn" font-size="50px">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"/>
+    <meta name="theme-color" content="#000000" />
+    <meta name="referrer" content="no-referrer">
+    <title></title>
+    <title>聚安月票</title>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .app {
+        height: 100vh;
+        width: 100vw;
+        overflow: scroll;
+      }
+      .top{
+        background-color: rgb(0, 0, 0);
+        height: 20rem;
+      }
+      .bottom {
+        background-color: white;
+        height: 28rem;
+      }
+      .top img{
+        width: 80%;
+        margin: 5% 0 0 10%;
+
+      }
+      .fixed {
+        position: fixed;
+        bottom: -0.4rem;
+        left: 0;
+        right: 0;
+        z-index: 99;
+      }
+      .fixed img {
+        width: 100%;
+        height: auto;
+      }
+      .bottom {
+        position: relative;
+      }
+      .content {
+        position: absolute;
+        top: -1.5rem;
+        width: 88%;
+        border: 2px solid rgb(202,202,202);
+        left: 6%;
+        z-index: 2;
+        background-color: white;
+        text-align: center;
+        border-bottom: none;
+        padding-bottom: 2rem;
+      }
+      .content .time {
+        font-size: 1.8rem;
+        line-height: 4.4rem;
+        font-weight: 900;
+      }
+      .content .line {
+        position: absolute;
+        bottom: -1.3rem;
+        left: 0;
+        right: 0;
+        width: 100%;
+      }
+      .logo {
+        margin: 0 6%;
+        padding: 1.4rem 0;
+        overflow: hidden;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        border-color: rgb(202,202,202);
+      }
+      .logo img {
+        width: 90%;
+      }
+      .text {
+        text-align: right;
+        padding-right: 6%;
+        line-height: 2rem;
+        font-size: 1rem;
+        font-weight: 900;
+        margin-top: 0.6rem;
+      }
+      #timer {
+        color: white;
+        font-weight: 900;
+        text-align: center;
+        font-size: 2.5rem;
+        padding-top: 1.6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="top">
+        <img src="./biaoti.gif" />
+        <div id="timer"></div>
+      </div>
+      <div class="bottom">
+        <div class="content">
+          <div class="time"><span id="date"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:15</div>
+          <div class="logo">
+            <img src="./neirong.gif"/>
+          </div>
+          <div class="text">
+            <div>行程路线&nbsp;&nbsp;&nbsp;&nbsp;万联百货-爱普生公司</div>
+            <div>工号&nbsp;&nbsp;&nbsp;&nbsp;104699</div>
+            <div>防伪码&nbsp;&nbsp;&nbsp;&nbsp;1011807865</div>
+            <div>手机号码&nbsp;&nbsp;&nbsp;&nbsp;17665252007</div>
+          </div>
+          <img src="./2.jpg" class="line"/>
+        </div>
+      </div>
+      <div class="fixed">
+        <img src="./3.jpg" />
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    window.onload = function() {
+      Date.prototype.Format = function (fmt) { // author: meizz
+          var o = {
+              "M+": this.getMonth() + 1, // 月份
+              "d+": this.getDate(), // 日
+              "h+": this.getHours(), // 小时
+              "m+": this.getMinutes(), // 分
+              "s+": this.getSeconds(), // 秒
+              "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+              "S": this.getMilliseconds() // 毫秒
+          };
+          if (/(y+)/.test(fmt))
+              fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+          for (var k in o)
+              if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                  return fmt;
+      }
+      const str = new Date().Format('MM月dd日')
+      document.getElementById('date').innerText = str
+      document.getElementById('timer').innerText = new Date().Format("hh:mm:ss")
+      setInterval(() => {
+        document.getElementById('timer').innerText = new Date().Format("hh:mm:ss")
+      }, 1000)
+    }
+  </script>
+</html>
